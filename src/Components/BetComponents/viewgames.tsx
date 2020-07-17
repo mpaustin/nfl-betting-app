@@ -159,9 +159,9 @@ const ViewGamesComponent: React.FC = () => {
                     <Grid key={game.teams} item className='grid-item'>
                         <Card className="card" variant="outlined">
                             <CardContent>
-                                <Typography variant="h6" component="h2"><h2>{game.teams[0]} vs {game.teams[1]}</h2></Typography>
+                                <Typography variant="h6" component="h2"><h2>{game.teams[0]} @ {game.teams[1]}</h2></Typography>
                                 <Typography variant="body2" component="p">{formatTime(game.commence_time)}</Typography>
-                                <Typography variant="body2"><h4>{game.teams[0]} {game.sites[0].odds.spreads.points[0]}</h4></Typography>
+                                <Typography variant="body2"><h4>{game.teams[0]} {game.sites[0].odds.spreads.points[0] > 0 ? `+${game.sites[0].odds.spreads.points[0]}` : game.sites[0].odds.spreads.points[0]}</h4></Typography>
                             </CardContent>
                             <CardActions>
                                 <Button size="small" onClick={() => handleOpen(game)}>Make a Bet</Button>
