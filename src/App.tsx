@@ -6,15 +6,19 @@ import MainAreaComponent from './UI/mainarea.component';
 import axios from 'axios';
 
 axios.interceptors.request.use((req) => {
-  const api_token = 'REDACTED_MYSPORTSFEEDS_TOKEN';
-  const api_password = 'REDACTED_MYSPORTSFEEDS_PASSWORD';
-  
-  const authString = btoa(`${api_token}:${api_password}`);
+  const apiToken = process.env.REACT_APP_MYSPORTSFEEDS_TOKEN;
+  const apiPassword = process.env.REACT_APP_MYSPORTSFEEDS_PASSWORD;
+
+  if (!apiToken || !apiPassword) {
+    return req;
+  }
+
+  const authString = btoa(`${apiToken}:${apiPassword}`);
 
   req.headers ={
     "Authorization": `Basic ${authString}`
-}
-return req;
+  }
+  return req;
 
 });
 

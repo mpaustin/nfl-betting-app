@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
-import Grid, { GridSpacing } from '@material-ui/core/Grid';
+import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Axios from 'axios';
-import { homedir } from 'os';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -21,10 +20,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 
 const ViewGamesComponent: React.FC = () => {
 
-    const season = 'current';
-    const format = 'json';
-
-    const apiKey = '57e22745320113ed2ecd5af270a1b02e';
+    const apiKey = process.env.REACT_APP_ODDS_API_KEY;
     const sport = 'americanfootball_nfl';
     const region = 'us';
     const mkt = 'spreads';
@@ -104,15 +100,19 @@ const ViewGamesComponent: React.FC = () => {
     }
 
     useEffect(() => {
+        if (!apiKey) {
+            setGames([]);
+            return;
+        }
+
         Axios.get(`https://api.the-odds-api.com/v3/odds/?apiKey=${apiKey}&sport=${sport}&region=${region}&mkt=${mkt}`)
         .then((response) => {
-            console.log(response.data.data);
             setGames(response.data.data);
         })
         .catch((error) => {
             console.log(error);
         });
-    },[]);
+    },[apiKey]);
 
     useEffect(() => {},[games]);
 

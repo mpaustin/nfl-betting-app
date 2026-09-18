@@ -23,13 +23,15 @@ export interface CumulativeStats {
         playerstatsentry: any[]
     }
 }
+
+const MARQUEE_OPTION_COUNT = 3;
+
 const TeamComponent: React.FC = () => {
     const [data, setData] = useState({} as CumulativeStats);
     const [renderSlice, setRenderSlice] = useState([] as any[]);
     const [sliceSize, setSliceSize] = useState(10);
     const [sliceStart, setSliceStart] = useState(0);
     const [marqueeString, setmarqueeString] = useState('Passing TDs: Lamar Jackson');
-    let max = 3;
     const playerSize: number = 1326;
     const [rowsPerPage, setRowsPerPage] = React.useState(sliceSize);
     const [page, setPage] = React.useState(0);
@@ -53,9 +55,6 @@ const TeamComponent: React.FC = () => {
 
     const submit = (evt: any) =>{
         evt.preventDefault();
-        let value = evt.target.getAttribute('data-value');
-       
-       
        /* Sorting Axios post needs access to the sorting service
         axios.post("http://localhost:8080/api/stats/", {
             action: 'teams'
@@ -90,7 +89,7 @@ const TeamComponent: React.FC = () => {
         }
     }
         useEffect( ()=> {
-            const myInterval = setInterval(()=>{setMarquee(max)}, 5000);
+            const myInterval = setInterval(()=>{setMarquee(MARQUEE_OPTION_COUNT)}, 5000);
             return ()=> {clearInterval(myInterval);}
         }, []);
         

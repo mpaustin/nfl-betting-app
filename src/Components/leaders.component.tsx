@@ -9,12 +9,14 @@ export interface CumulativeStats {
     }
 }
 
+const MARQUEE_OPTION_COUNT = 3;
+
 const LeadersComponent: React.FC = () => {
 
     const [data, setData] = useState({} as CumulativeStats);
     const [renderSlice, setRenderSlice] = useState([] as any[]);
-    const [sliceSize, setSliceSize] = useState(10);
-    const [sliceStart, setSliceStart] = useState(0);
+    const [sliceSize] = useState(10);
+    const [sliceStart] = useState(0);
     const [result, setResult] = useState('Passing TDs');
     const [result2, setResult2] = useState('Passing Yds');
     const [result3, setResult3] = useState('Passing Att/Cmp');
@@ -22,7 +24,6 @@ const LeadersComponent: React.FC = () => {
     const [result5, setResult5] = useState('Passing Ints');
     const [result6, setResult6] = useState('Other');
     const [marqueeString, setmarqueeString] = useState('Passing TDs: Lamar Jackson');
-    let max = 3;
 
     let value = 'passing';
 
@@ -48,7 +49,7 @@ const setMarquee = (max: number)=>{
     }
 }
     useEffect( ()=> {
-        const myInterval = setInterval(()=>{setMarquee(max)}, 5000);
+        const myInterval = setInterval(()=>{setMarquee(MARQUEE_OPTION_COUNT)}, 5000);
         return ()=> {clearInterval(myInterval);}
     }, []);
 

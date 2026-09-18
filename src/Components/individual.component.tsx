@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Marquee from "../marquee";
 import TablePagination from '@material-ui/core/TablePagination';
-import { List } from '@material-ui/core';
 
 
 
@@ -12,6 +11,9 @@ export interface CumulativeStats {
         playerstatsentry: any[]
     }
 }
+
+const MARQUEE_OPTION_COUNT = 3;
+
 const IndividualComponent: React.FC = () => {
     const [data, setData] = useState({} as CumulativeStats);
     const [renderSlice, setRenderSlice] = useState([] as any[]);
@@ -19,7 +21,6 @@ const IndividualComponent: React.FC = () => {
     const [sliceStart, setSliceStart] = useState(0);
     const [dropDownSel, setdropDownSel] = useState('Sacks');
     const [marqueeString, setmarqueeString] = useState('Passing TDs: Lamar Jackson');
-    let max = 3;
     const playerSize: number = 1326;
     const [rowsPerPage, setRowsPerPage] = React.useState(sliceSize);
     const [page, setPage] = React.useState(0);
@@ -87,7 +88,7 @@ const IndividualComponent: React.FC = () => {
         }
     }
         useEffect( ()=> {
-            const myInterval = setInterval(()=>{setMarquee(max)}, 5000);
+            const myInterval = setInterval(()=>{setMarquee(MARQUEE_OPTION_COUNT)}, 5000);
             return ()=> {clearInterval(myInterval);}
         }, []);
     

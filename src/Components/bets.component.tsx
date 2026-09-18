@@ -1,6 +1,5 @@
 import React from 'react';
 import { Switch, Route } from 'react-router';
-import MainContentComponent from './maincontent.component';
 import ViewGamesComponent from './BetComponents/viewgames';
 import ViewBetsComponent from './BetComponents/viewbets';
 import ViewUserProfComponent from './BetComponents/viewuserprof';

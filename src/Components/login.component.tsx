@@ -27,7 +27,7 @@ const LoginComponent: React.FC<LoginComponentProps> = ({history}) => {
     
             }).then((response) => {
 
-                if(response.data.message == 'authenticated') {
+                if(response.data.message === 'authenticated') {
                     localStorage.setItem('username', username);
 
                     history.push('/betting/');

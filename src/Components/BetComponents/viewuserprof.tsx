@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import Axios from 'axios';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -45,8 +44,6 @@ const ViewUserProfComponent: React.FC = () => {
 
         setOpen(false);
     }
-
-    useEffect(() => console.log(userFunds), [userFunds]);
 
     useEffect(() => {
         Axios.get('http://localhost:8080/api/profile/viewprof', {
